@@ -1,5 +1,9 @@
+<!-- ./pages/[…slug].vue -->
+
 <template>
   <main>
-    <ContentDoc />
+    <article class="prose">
+      <ContentDoc />
+    </article>
   </main>
 </template>
