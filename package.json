@@ -1,14 +1,16 @@
 {
   "private": true,
+  "author": "Yonathan Solomon Tulu",
   "scripts": {
     "dev": "nuxi dev",
-    "build": "nuxi build",
+    "build": "nuxi build && cp .appengine/app.yaml dist/",
     "generate": "nuxi generate",
     "preview": "nuxi preview",
     "postinstall": "nuxi prepare"
   },
   "devDependencies": {
     "content-wind": "^0.2.7",
-    "nuxt": "3.0.0-rc.12"
+    "nuxt": "3.0.0-rc.12",
+    "prettier": "^2.7.1"
   }
 }
