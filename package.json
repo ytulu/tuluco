@@ -1,6 +1,9 @@
 {
   "private": true,
-  "author": "Yonathan Solomon Tulu",
+  "author": {
+    "name": "Yonathan Solomon Tulu",
+    "email": "yonathan@tuluco.com"
+  },
   "scripts": {
     "dev": "nuxi dev",
     "build": "nuxi build && cp .appengine/app.yaml dist/",
