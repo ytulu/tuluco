@@ -28,3 +28,18 @@ jobs:
         commit_user_name: My GitHub Actions Bot
         commit_user_email: actions@github.com # to change
         commit_author: My GitHub Actions Bot <actions@github.com>
+    
+    # auth with Google app engine and deploy
+
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        workload_identity_provider: 'projects/840236813847/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+        service_account: 'my-service-account@tulu-co-368103.iam.gserviceaccount.com'
+    - id: 'deploy'
+      uses: 'google-github-actions/deploy-appengine@v1'
+
+    # Example of using the output
+    - id: 'test'
+      run: 'curl "${{ steps.deploy.outputs.url }}"'
