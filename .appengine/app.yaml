@@ -1,11 +1,11 @@
-runtime: python37
-
+runtime: python27
+api_version: 1
+threadsafe: true
 handlers:
 - url: /
-  static_files: index.html
-  upload: index.html
-  secure: always
+  static_files: build/index.html
+  upload: build/index.html
+  expiration: 1s
 - url: /(.*)
-  static_files: \1
-  upload: (.*)
-  secure: always
+  static_files: build/\1
+  upload: build/(.*)
