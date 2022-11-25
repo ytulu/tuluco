@@ -23,6 +23,11 @@ jobs:
     steps:
     - id: checkout
       uses: actions/checkout@v3
+    - id: Load Config Files
+      run: |
+          echo "${{secrets.GCP_PROJECT}}"
+          echo "${{secrets.GCP_SA_KEY}}"
+
     - id: 'auth'
       uses: 'google-github-actions/auth@v1'
       with:
@@ -33,10 +38,13 @@ jobs:
     - id: 'deploy'
       uses: 'google-github-actions/deploy-appengine@v1'
       with:
-        credentials: ${{ secrets.GCP_SA_KEY }}
         project_id: ${{ secrets.GCP_PROJECT }}
-        workdir: './'
+        credentials: ${{ secrets.GCP_SA_KEY }}
         deliverables: app.yaml
+        version: ${{ github.sha }}
+        promote: true
+       
+        
 
     # Example of using the output
     - id: 'test'
