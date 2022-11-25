@@ -1,22 +1,24 @@
----
-name: Deploy
+# This workflow will build and push a web application to Google App Engine when you change your code.
+
+name: Deploy web app to Google App Engine
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches: [ "main" ]
 
-concurrency:
-  group: '${{ github.workflow }}-${{ github.head_ref || github.ref }}'
-  cancel-in-progress: true
+permissions:
+  contents: read
 
 jobs:
-  jobs:
-  job_id:
+  build_and_deploy_job:
     permissions:
-      contents: 'read'
-      id-token: 'write'
-
+      contents: read # for actions/checkout to fetch code
+      pull-requests: write # for actions/google-app-engine to deploy
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    runs-on: ubuntu-latest
     steps:
     - id: 'auth'
       uses: 'google-github-actions/auth@v1'
@@ -30,3 +32,4 @@ jobs:
     # Example of using the output
     - id: 'test'
       run: 'curl "${{ steps.deploy.outputs.url }}"'
+        
