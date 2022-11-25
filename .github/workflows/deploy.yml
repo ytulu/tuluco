@@ -24,9 +24,7 @@ jobs:
     - id: checkout
       uses: actions/checkout@v3
     - id: Load Config Files
-      run: |
-          echo "${{secrets.GCP_PROJECT}}"
-          echo "${{secrets.GCP_SA_KEY}}"
+      run: echo "${{secrets.GCP_SA_KEY}}"
 
     - id: 'auth'
       uses: 'google-github-actions/auth@v1'
