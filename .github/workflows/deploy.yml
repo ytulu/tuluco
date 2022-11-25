@@ -28,10 +28,13 @@ jobs:
       with:
         workload_identity_provider: '${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}'
         service_account: '${{ secrets.WIF_SERVICE_ACCOUNT }}'
+        project_id: 'tulu-co-368103'
 
     - id: 'deploy'
       uses: 'google-github-actions/deploy-appengine@v1'
       with:
+        project_id: 'tulu-co-368103'
+        workdir: './'
         deliverables: app.yaml
 
     # Example of using the output
