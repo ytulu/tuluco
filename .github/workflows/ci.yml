@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Clone submodules
+      name: Clone submodules
       with:
         token: ${{ secrets.DISPATCH_HOOK_TOKEN }}
         submodules: true
