@@ -22,9 +22,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - id: checkout
-      uses: actions/checkout@v2
-    - name: Load Config Files
-      run: echo "${{secrets.GCP_SA_KEY}}"
+      uses: actions/checkout@v3
+      
+    - id: Setup build
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+    - run: npm install
+    - run: npm run build
 
     - id: 'auth'
       uses: 'google-github-actions/auth@v1'
