@@ -38,7 +38,6 @@ jobs:
       with:
         working_directory: './'
         deliverables: app.yaml
-        version: 'v1'
        
     # Example of using the output
     - id: 'test'
