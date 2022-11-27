@@ -6,7 +6,7 @@
   },
   "scripts": {
     "dev": "nuxi dev",
-    "build": "nuxi build && cp .appengine/app.yaml dist/",
+    "build": "nuxi build",
     "start": "nuxt start",
     "generate": "nuxi generate",
     "preview": "nuxi preview",
