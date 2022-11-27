@@ -29,13 +29,14 @@ jobs:
     - id: 'auth'
       uses: 'google-github-actions/auth@v1'
       with:
-        workload_identity_provider: 'projects/840236813847/locations/global/workloadIdentityPools/my-pool/providers/my-provider' #'${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}'
-        service_account: 'my-service-account@tulu-co-368103.iam.gserviceaccount.com' #'${{ secrets.WIF_SERVICE_ACCOUNT }}'
+        workload_identity_provider: 'projects/840236813847/locations/global/workloadIdentityPools/tuluco-pool/providers/tuluco-provider' #'${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}'
+        service_account: 'tulu-co-368103@appspot.gserviceaccount.com' #'${{ secrets.WIF_SERVICE_ACCOUNT }}'
         project_id: 'tulu-co-368103'
 
     - id: 'deploy'
       uses: 'google-github-actions/deploy-appengine@v1'
       with:
+        working_directory: './'
         deliverables: app.yaml
         version: ${{ github.sha }}
         promote: true
