@@ -38,11 +38,8 @@ jobs:
       with:
         working_directory: './'
         deliverables: app.yaml
-        version: ${{ github.sha }}
-        promote: true
+        version: 'v1'
        
-        
-
     # Example of using the output
     - id: 'test'
       run: 'curl "${{ steps.deploy.outputs.url }}"'
