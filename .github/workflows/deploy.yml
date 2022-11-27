@@ -40,7 +40,7 @@ jobs:
       with:
         workload_identity_provider: 'projects/840236813847/locations/global/workloadIdentityPools/tuluco-pool/providers/tuluco-provider' #'${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}'
         service_account: 'tulu-co-368103@appspot.gserviceaccount.com' #'${{ secrets.WIF_SERVICE_ACCOUNT }}'
-        project_id: 'tulu-co-368103'
+        project_id: 'tulu-co-368103' #'${{ secrets.GCP_PROJECT_ID }}'
 
     - id: 'deploy'
       uses: 'google-github-actions/deploy-appengine@v1'
