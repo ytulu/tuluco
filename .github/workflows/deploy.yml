@@ -45,7 +45,7 @@ jobs:
         working_directory: './'
         deliverables: app.yaml
        
-    # Example of using the output
+    # Example of using the output.
     - id: 'test'
       run: 'curl "${{ steps.deploy.outputs.url }}"'
         
