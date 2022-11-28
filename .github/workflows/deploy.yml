@@ -1,6 +1,6 @@
 # This workflow will build and push a web application to Google App Engine when you change your code.
 
-name: Deploy web app to Google App Engine staging
+name: Deploy web app to Google App Engine
 
 on:
   push:
