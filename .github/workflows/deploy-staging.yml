@@ -47,7 +47,7 @@ jobs:
       with:
         working_directory: './'
         deliverables: app-staging.yaml
-        version: '{github.sha}'
+        version: staging-${{ github.sha }}
        
     # Example of using the output.
     - id: 'test'
