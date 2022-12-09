@@ -1,6 +1,6 @@
 # This workflow will build and push a web application to Google App Engine when you change your code.
 
-name: Deploy web app to Google App Engine staging
+name: Deploy web app to Google App Engine Staging
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
 
 permissions:
   contents: read
-
+  pull-requests: read
 jobs:
   build_and_deploy_job:
     permissions:
@@ -21,19 +21,33 @@ jobs:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     steps:
+    - id: checkout
+      uses: actions/checkout@v3
+    - name: Checkout submodules
+      run: git submodule update --init --recursive
+       
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+    - name: Install dependencies
+      run: npm install
+    - name: Build
+      run: npm run build
+
     - id: 'auth'
       uses: 'google-github-actions/auth@v1'
       with:
-        workload_identity_provider: '${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}'
-        service_account: '${{ secrets.WIF_SERVICE_ACCOUNT }}'
-        project_id: '${{ secrets.PROJECT_ID }}'
+        workload_identity_provider: 'projects/840236813847/locations/global/workloadIdentityPools/tuluco-pool/providers/tuluco-provider' #'${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}'
+        service_account: 'tulu-co-368103@appspot.gserviceaccount.com' #'${{ secrets.WIF_SERVICE_ACCOUNT }}'
+        project_id: 'tulu-co-368103' #'${{ secrets.GCP_PROJECT_ID }}'
 
     - id: 'deploy'
       uses: 'google-github-actions/deploy-appengine@v1'
-      version: '{github.sha}'
-
-    # Example of using the output
+      with:
+        working_directory: './'
+        deliverables: app-staging.yaml
+       
+    # Example of using the output.
     - id: 'test'
       run: 'curl "${{ steps.deploy.outputs.url }}"'
-      
-        
