@@ -30,7 +30,8 @@ jobs:
 
     - id: 'deploy'
       uses: 'google-github-actions/deploy-appengine@v1'
-      version: '{github.sha}'
+      with:
+        version: '{github.sha}'
 
     # Example of using the output
     - id: 'test'
