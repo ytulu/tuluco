@@ -52,4 +52,3 @@ jobs:
     - id: 'test'
       run: 'curl "${{ steps.deploy.outputs.url }}"'
       
-        
